@@ -1,4 +1,4 @@
-import { useReducer, forwardRef, useImperativeHandle } from "react";
+import { useReducer, forwardRef, useImperativeHandle } from 'react'
 import {
   GlobalContext,
   reducer,
@@ -12,23 +12,18 @@ import {
   setTextRange,
   defaultState,
   setLanguage,
-  setLanguageLibraries,
-} from "./reducers";
-import dataToHtml from "./utils/dataToHTML";
-import Main from "./components/Main";
-import "./assets/App.css";
+  setLanguageLibraries
+} from './reducers'
+import dataToHtml from './utils/dataToHTML'
+import Main from './components/Main'
+import './assets/App.css'
 
-const EmailEditor = forwardRef(({ defaultBlockList, language = "en", customLanguageLibraries }, ref) => {
+const EmailEditor = ({ defaultBlockList, language = 'en', customLanguageLibraries }) => {
   const [state, dispatch] = useReducer(reducer, {
     ...defaultState,
     blockList: defaultBlockList ? defaultBlockList : defaultState.blockList,
-    languageLibraries: customLanguageLibraries,
-  });
-  useImperativeHandle(ref, () => ({
-    blockList: state.blockList,
-    actionType: state.actionType,
-    exportHtml: () => dataToHtml({ bodySettings: state.bodySettings, blockList: state.blockList }),
-  }));
+    languageLibraries: customLanguageLibraries
+  })
 
   return (
     <GlobalContext.Provider
@@ -44,42 +39,42 @@ const EmailEditor = forwardRef(({ defaultBlockList, language = "en", customLangu
         language: state.language,
         languageLibraries: state.languageLibraries,
         setIsDragStart: (isDragStart) => {
-          dispatch(setIsDragStart(isDragStart));
+          dispatch(setIsDragStart(isDragStart))
         },
         setBodySettings: (bodySettings, actionType) => {
-          actionType && dispatch(setActionType(actionType));
-          dispatch(setBodySettings(bodySettings));
+          actionType && dispatch(setActionType(actionType))
+          dispatch(setBodySettings(bodySettings))
         },
         setBlockList: (blockList, actionType) => {
-          actionType && dispatch(setActionType(actionType));
-          dispatch(setBlockList(blockList));
+          actionType && dispatch(setActionType(actionType))
+          dispatch(setBlockList(blockList))
         },
         setPreviewMode: (previewMode) => {
-          dispatch(setPreviewMode(previewMode));
+          dispatch(setPreviewMode(previewMode))
         },
         setCurrentItem: (currentItem) => {
-          dispatch(setCurrentItem(currentItem));
+          dispatch(setCurrentItem(currentItem))
         },
         setSelectionRange: (selectionRange) => {
-          dispatch(setSelectionRange(selectionRange));
+          dispatch(setSelectionRange(selectionRange))
         },
         setTextRange: (textRange) => {
-          dispatch(setTextRange(textRange));
+          dispatch(setTextRange(textRange))
         },
         setActionType: (actionType) => {
-          dispatch(setActionType(actionType));
+          dispatch(setActionType(actionType))
         },
         setLanguage: (language) => {
-          dispatch(setLanguage(language));
+          dispatch(setLanguage(language))
         },
         setLanguageLibraries: (languageLibraries) => {
-          dispatch(setLanguageLibraries(languageLibraries));
-        },
+          dispatch(setLanguageLibraries(languageLibraries))
+        }
       }}
     >
       <Main language={language} />
     </GlobalContext.Provider>
-  );
-});
+  )
+}
 
-export default EmailEditor;
+export default EmailEditor

@@ -737,7 +737,7 @@
           {
             "name": "文本",
             "key": "text",
-            "text": "@powerd by email editor",
+            "text": "@powerd by Statement Editor",
             "styles": {
               "desktop": {
                 "fontSize": 14,
