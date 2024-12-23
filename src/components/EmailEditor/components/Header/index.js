@@ -42,6 +42,7 @@ const Header = (props) => {
         onCancel={() => setShowViewJson(false)}
         footer={null}
         width="60%"
+        zIndex={9999}
       >
         <ReactJson
           src={blockList}

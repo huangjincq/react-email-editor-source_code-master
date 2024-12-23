@@ -1,7 +1,7 @@
 const getBlockConfigsList = (t) => {
   return [
     {
-      name: t('column'),
+      name: 'Column',
       key: 'column',
       type: 'full',
       styles: {
@@ -140,47 +140,47 @@ const getBlockConfigsList = (t) => {
       styles: {
         width: 'auto'
       }
-    },
-    {
-      name: t('social_link'),
-      key: 'social_link',
-      list: [
-        {
-          image: 'https://iili.io/HMnhdkN.png',
-          title: 'facebook',
-          linkURL: ''
-        },
-        {
-          image: 'https://iili.io/J9qWqNV.png',
-          title: 'Instagram',
-          linkURL: ''
-        },
-        {
-          image: 'https://iili.io/J9qWBDB.png',
-          title: 'TikTok',
-          linkURL: ''
-        },
-        {
-          image: 'https://iili.io/J9qWnoP.png',
-          title: 'Twitter',
-          linkURL: ''
-        }
-      ],
-      imageWidth: 32,
-      contentStyles: {
-        paddingTop: 12,
-        paddingBottom: 12,
-        paddingLeft: 12,
-        paddingRight: 12,
-        textAlign: 'left'
-      },
-      styles: {
-        paddingTop: 4,
-        paddingBottom: 4,
-        paddingLeft: 6,
-        paddingRight: 6
-      }
     }
+    // {
+    //   name: t('social_link'),
+    //   key: 'social_link',
+    //   list: [
+    //     {
+    //       image: 'https://iili.io/HMnhdkN.png',
+    //       title: 'facebook',
+    //       linkURL: ''
+    //     },
+    //     {
+    //       image: 'https://iili.io/J9qWqNV.png',
+    //       title: 'Instagram',
+    //       linkURL: ''
+    //     },
+    //     {
+    //       image: 'https://iili.io/J9qWBDB.png',
+    //       title: 'TikTok',
+    //       linkURL: ''
+    //     },
+    //     {
+    //       image: 'https://iili.io/J9qWnoP.png',
+    //       title: 'Twitter',
+    //       linkURL: ''
+    //     }
+    //   ],
+    //   imageWidth: 32,
+    //   contentStyles: {
+    //     paddingTop: 12,
+    //     paddingBottom: 12,
+    //     paddingLeft: 12,
+    //     paddingRight: 12,
+    //     textAlign: 'left'
+    //   },
+    //   styles: {
+    //     paddingTop: 4,
+    //     paddingBottom: 4,
+    //     paddingLeft: 6,
+    //     paddingRight: 6
+    //   }
+    // }
   ]
 }
 

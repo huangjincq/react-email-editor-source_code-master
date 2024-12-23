@@ -1,10 +1,9 @@
 import { useState, useContext, useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt, faUndo, faRedo, faEye, faTabletAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
-import classNames from '../../utils/classNames'
+import { Tooltip, Button, Space } from 'antd'
 // import { deepClone } from "../../utils/helpers";
 import { GlobalContext } from '../../reducers'
 import { deepClone } from '../../utils/helpers'
+import { ClearOutlined, UndoOutlined, RedoOutlined } from '@ant-design/icons'
 
 const Header = () => {
   const { bodySettings, blockList, actionType, setBlockList, setBodySettings } = useContext(GlobalContext)
@@ -13,6 +12,10 @@ const Header = () => {
     index: 0
   })
   const { histories, index } = blockListHistory
+
+  const handleClearAll = () => {
+    setBlockList([], 'delete')
+  }
 
   useEffect(() => {
     //第一次渲染不添加
@@ -68,24 +71,22 @@ const Header = () => {
         <div className="header-box"></div>
         <div className="header-box text-center"></div>
         <div className="header-box text-right">
-          <FontAwesomeIcon
-            onClick={prevHistory}
-            icon={faUndo}
-            className={classNames(
-              'header-icon-history',
-              histories[index - 1] && 'header-icon-history_active',
-              !histories[index - 1] && 'header-icon-history_disabled'
-            )}
-          />
-          <FontAwesomeIcon
-            onClick={nextHistory}
-            icon={faRedo}
-            className={classNames(
-              'header-icon-history',
-              histories[index + 1] && 'header-icon-history_active',
-              !histories[index + 1] && 'header-icon-history_disabled'
-            )}
-          />
+          <Space>
+            <Tooltip title="Clear All">
+              <Button
+                onClick={handleClearAll}
+                disabled={blockList.length === 0}
+                shape="circle"
+                icon={<ClearOutlined />}
+              />
+            </Tooltip>
+            <Tooltip title="Undo">
+              <Button onClick={prevHistory} shape="circle" icon={<UndoOutlined />} disabled={!histories[index - 1]} />
+            </Tooltip>
+            <Tooltip title="Redo">
+              <Button onClick={nextHistory} shape="circle" icon={<RedoOutlined />} disabled={!histories[index + 1]} />
+            </Tooltip>
+          </Space>
         </div>
       </div>
     </>
