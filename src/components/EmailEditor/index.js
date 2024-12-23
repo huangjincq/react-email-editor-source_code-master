@@ -4,7 +4,6 @@ import {
   reducer,
   setBlockList,
   setActionType,
-  setPreviewMode,
   setCurrentItem,
   setBodySettings,
   setIsDragStart,
@@ -30,7 +29,6 @@ const EmailEditor = ({ defaultBlockList, language = 'en', customLanguageLibrarie
       value={{
         blockList: state.blockList,
         actionType: state.actionType,
-        previewMode: state.previewMode,
         currentItem: state.currentItem,
         bodySettings: state.bodySettings,
         isDragStart: state.isDragStart,
@@ -48,9 +46,6 @@ const EmailEditor = ({ defaultBlockList, language = 'en', customLanguageLibrarie
         setBlockList: (blockList, actionType) => {
           actionType && dispatch(setActionType(actionType))
           dispatch(setBlockList(blockList))
-        },
-        setPreviewMode: (previewMode) => {
-          dispatch(setPreviewMode(previewMode))
         },
         setCurrentItem: (currentItem) => {
           dispatch(setCurrentItem(currentItem))

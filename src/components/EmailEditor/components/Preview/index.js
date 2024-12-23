@@ -8,7 +8,7 @@ import useTranslation from '../../translation'
 const Preview = (props) => {
   const { clearStyles } = props
   const { t } = useTranslation()
-  const { previewMode, bodySettings, blockList, setSelectionRange } = useContext(GlobalContext)
+  const { bodySettings, blockList, setSelectionRange } = useContext(GlobalContext)
 
   useEffect(() => {
     const onSelectionChange = throttle(() => {
@@ -42,7 +42,7 @@ const Preview = (props) => {
         <div
           className="preview-content"
           style={{
-            width: previewMode === 'desktop' ? '100%' : 364,
+            width: '100%',
             ...bodySettings.styles
           }}
         >
