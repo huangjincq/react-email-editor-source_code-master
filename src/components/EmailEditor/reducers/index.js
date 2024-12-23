@@ -80,7 +80,7 @@ export const defaultActionType = 'firstRender' // firstRender, add, move, delete
 export const defaultCurrentItem = null
 export const defaultBodySettings = {
   preHeader: '',
-  contentWidth: 600,
+  contentWidth: '90%',
   styles: {
     backgroundColor: '#9ca3af',
     color: '#000',
