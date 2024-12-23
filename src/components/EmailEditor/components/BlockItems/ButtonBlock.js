@@ -9,9 +9,9 @@ const ButtonBlock = (props) => {
 
   //TODO: border radius未制作
   const isEdit = currentItem && currentItem.index === index
-  const styles = blockItem.styles.desktop
+  const styles = blockItem.styles
 
-  const contentStyles = blockItem.contentStyles?.desktop
+  const contentStyles = blockItem.contentStyles
 
   const richTextElement = useMemo(() => <RichTextLayout {...props} />, [isEdit, actionType])
   return (

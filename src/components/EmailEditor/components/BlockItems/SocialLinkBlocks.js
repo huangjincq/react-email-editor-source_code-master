@@ -3,8 +3,8 @@ import { GlobalContext } from '../../reducers'
 
 const SocialLinkBlocks = ({ blockItem }) => {
   const { list, imageWidth } = blockItem
-  const styles = blockItem.styles.desktop
-  const contentStyles = blockItem.contentStyles?.desktop
+  const styles = blockItem.styles
+  const contentStyles = blockItem.contentStyles
   return (
     <div className="relative">
       <div style={contentStyles}>

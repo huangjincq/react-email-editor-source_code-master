@@ -112,8 +112,8 @@ const SocialLinkSettings = () => {
 
   const contentPaddingChange = (padding) => {
     const newData = deepClone(currentItem.data)
-    newData.contentStyles.desktop = {
-      ...newData.contentStyles.desktop,
+    newData.contentStyles = {
+      ...newData.contentStyles,
       ...padding
     }
     updateItemStyles(newData)
@@ -121,8 +121,8 @@ const SocialLinkSettings = () => {
 
   const updateContentTextAlign = (textAlign) => {
     const newData = deepClone(currentItem.data)
-    newData.contentStyles.desktop = {
-      ...newData.contentStyles.desktop,
+    newData.contentStyles = {
+      ...newData.contentStyles,
       textAlign
     }
     updateItemStyles(newData)

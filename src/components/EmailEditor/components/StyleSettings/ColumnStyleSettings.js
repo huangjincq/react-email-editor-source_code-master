@@ -104,8 +104,8 @@ const ColumnStyleSettings = () => {
 
   const changePaddingStyle = (index) => (padding) => {
     const newData = deepClone(currentItem.data)
-    newData.children[index].styles.desktop = {
-      ...newData.children[index].styles.desktop,
+    newData.children[index].styles = {
+      ...newData.children[index].styles,
       ...padding
     }
     updateItemStyles(newData)

@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 const HeadingBlock = (props) => {
   const { index, blockItem } = props
   const { currentItem, actionType } = useContext(GlobalContext)
-  const styles = blockItem.styles.desktop
+  const styles = blockItem.styles
   const isEdit = currentItem && currentItem.index === index
   const richTextElement = useMemo(() => <RichTextLayout {...props} />, [isEdit, actionType])
 

@@ -10,7 +10,7 @@ const RichTextLayout = ({ index, blockItem }) => {
   const richTextRef = useRef(null)
 
   const isEdit = currentItem && currentItem.index === index
-  const styles = blockItem.styles.desktop
+  const styles = blockItem.styles
 
   useEffect(() => {
     if (isEdit) {

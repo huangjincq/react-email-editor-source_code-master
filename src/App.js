@@ -8,7 +8,7 @@ function App() {
 
   return (
     <Router history={history}>
-      <EmailEditor defaultBlockList={defaultBlockList} />
+      <EmailEditor defaultBlockList={[]} />
     </Router>
   )
 }

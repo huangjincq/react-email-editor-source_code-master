@@ -20,14 +20,11 @@ const Main = ({ language }) => {
     key: 'empty',
     width: '100%',
     styles: {
-      desktop: {
-        backgroundColor: 'transparent',
-        paddingTop: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        paddingBottom: 0
-      },
-      mobile: {}
+      backgroundColor: 'transparent',
+      paddingTop: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      paddingBottom: 0
     }
   }
 

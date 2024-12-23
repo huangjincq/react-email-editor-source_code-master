@@ -6,9 +6,9 @@ const useLayout = () => {
   const { currentItem, blockList, setBlockList, setCurrentItem } = useContext(GlobalContext)
 
   const findStyleItem = (styles, key) => {
-    let styleItem = styles.desktop[key]
+    let styleItem = styles[key]
     if (!styleItem) {
-      styleItem = styles['desktop'][key]
+      styleItem = styles[key]
     }
     return styleItem
   }
@@ -26,14 +26,14 @@ const useLayout = () => {
     (key) =>
     ({ hex }) => {
       const newCurrentItem = deepClone(currentItem)
-      newCurrentItem.data.styles.desktop[key] = hex
+      newCurrentItem.data.styles[key] = hex
       updateItemStyles(newCurrentItem.data)
     }
 
   const paddingChange = (padding) => {
     const newData = deepClone(currentItem.data)
-    newData.styles.desktop = {
-      ...newData.styles.desktop,
+    newData.styles = {
+      ...newData.styles,
       ...padding
     }
     updateItemStyles(newData)
@@ -41,13 +41,13 @@ const useLayout = () => {
 
   const inputChange = (key) => (value) => {
     const newData = deepClone(currentItem.data)
-    newData.styles.desktop[key] = value
+    newData.styles[key] = value
     updateItemStyles(newData)
   }
 
   const otherStylesChange = (key, value) => {
     const newData = deepClone(currentItem.data)
-    newData.styles.desktop[key] = value
+    newData.styles[key] = value
     updateItemStyles(newData)
   }
 

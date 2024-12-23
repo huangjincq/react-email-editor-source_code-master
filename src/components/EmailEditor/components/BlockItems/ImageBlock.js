@@ -5,8 +5,8 @@ import { faImage } from '@fortawesome/free-solid-svg-icons'
 
 const ImageBlock = ({ blockItem }) => {
   const { src, alt } = blockItem
-  const styles = blockItem.styles.desktop
-  const contentStyles = blockItem.contentStyles?.desktop
+  const styles = blockItem.styles
+  const contentStyles = blockItem.contentStyles
 
   return (
     <div className="relative">

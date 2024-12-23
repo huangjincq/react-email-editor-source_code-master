@@ -18,8 +18,8 @@ const DividerStyleSettings = () => {
 
   const updateContentStylesPadding = (padding) => {
     const newData = deepClone(currentItem.data)
-    newData.contentStyles.desktop = {
-      ...newData.contentStyles.desktop,
+    newData.contentStyles = {
+      ...newData.contentStyles,
       ...padding
     }
     updateItemStyles(newData)
@@ -27,8 +27,8 @@ const DividerStyleSettings = () => {
 
   const updateContentTextAlign = (textAlign) => {
     const newData = deepClone(currentItem.data)
-    newData.contentStyles.desktop = {
-      ...newData.contentStyles.desktop,
+    newData.contentStyles = {
+      ...newData.contentStyles,
       textAlign
     }
     updateItemStyles(newData)

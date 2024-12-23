@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDesktop, faMobileAlt, faUndo, faRedo, faEye, faTabletAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faMobileAlt, faUndo, faRedo, faEye, faTabletAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
 import classNames from '../../utils/classNames'
 // import { deepClone } from "../../utils/helpers";
 import { GlobalContext } from '../../reducers'

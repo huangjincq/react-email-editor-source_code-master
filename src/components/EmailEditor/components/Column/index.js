@@ -21,7 +21,7 @@ const Column = (props) => {
     setActionType
   } = useContext(GlobalContext)
 
-  let columnStyles = block.styles.desktop
+  let columnStyles = block.styles
   const { contentBackground, ...newStyles } = columnStyles
 
   const deleteBlock = (event) => {
@@ -49,14 +49,11 @@ const Column = (props) => {
         key: 'empty',
         width: '100%',
         styles: {
-          desktop: {
-            backgroundColor: 'transparent',
-            paddingTop: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
-            paddingBottom: 0
-          },
-          mobile: {}
+          backgroundColor: 'transparent',
+          paddingTop: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingBottom: 0
         }
       })
     }
@@ -228,7 +225,7 @@ const Column = (props) => {
               data-index={blockIndex}
             >
               {block.children.map((content, index) => {
-                let contentStyles = content.styles.desktop
+                let contentStyles = content.styles
                 return (
                   <Fragment key={index}>
                     <div id={`block-content-${blockIndex}-${index}`} style={{ ...contentStyles, width: content.width }}>

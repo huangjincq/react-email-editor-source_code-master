@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../reducers'
 
 const DividerBlock = ({ blockItem }) => {
-  const styles = blockItem.styles.desktop
-  const contentStyles = blockItem.contentStyles?.desktop
+  const styles = blockItem.styles
+  const contentStyles = blockItem.contentStyles
 
   return (
     <div className="relative">

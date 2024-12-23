@@ -1,59 +1,48 @@
 const getColumnConfigFunc = (t) => {
   return (item) => {
     const contentConfig = {
-      name: t("drag_block_here"),
-      key: "empty",
-      width: "100%",
+      name: t('drag_block_here'),
+      key: 'empty',
+      width: '100%',
       styles: {
-        desktop: {
-          backgroundColor: "transparent",
-          paddingTop: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-          paddingBottom: 0,
-        },
-        mobile: {},
-      },
-    };
+        backgroundColor: 'transparent',
+        paddingTop: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        paddingBottom: 0
+      }
+    }
 
     return {
-      name: t("column"),
-      key: "column",
-      type: "full",
+      name: t('column'),
+      key: 'column',
+      type: 'full',
       styles: {
-        key: "column",
-        desktop: {
-          backgroundColor: "transparent",
-          paddingTop: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-          paddingBottom: 0,
-          contentBackground: "#fff",
-        },
-        mobile: {},
+        backgroundColor: 'transparent',
+        paddingTop: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        paddingBottom: 0,
+        contentBackground: '#fff'
       },
       children: [
         {
-          name: t("content"),
-          key: "content",
-          width: "100%",
+          name: t('content'),
+          key: 'content',
+          width: '100%',
           styles: {
-            key: "column",
-            desktop: {
-              backgroundColor: "transparent",
-              paddingTop: 0,
-              paddingLeft: 0,
-              paddingRight: 0,
-              paddingBottom: 0,
-              contentBackground: "transparent",
-            },
-            mobile: {},
+            backgroundColor: 'transparent',
+            paddingTop: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            paddingBottom: 0,
+            contentBackground: 'transparent'
           },
-          children: [item ? item : contentConfig],
-        },
-      ],
-    };
-  };
-};
+          children: [item ? item : contentConfig]
+        }
+      ]
+    }
+  }
+}
 
-export default getColumnConfigFunc;
+export default getColumnConfigFunc
