@@ -8,7 +8,7 @@ import useTranslation from '../../translation'
 const Preview = (props) => {
   const { clearStyles } = props
   const { t } = useTranslation()
-  const { bodySettings, blockList, setSelectionRange } = useContext(GlobalContext)
+  const { bodySettings, blockList, setSelectionRange, setCurrentItem } = useContext(GlobalContext)
 
   useEffect(() => {
     const onSelectionChange = throttle(() => {
@@ -35,8 +35,15 @@ const Preview = (props) => {
     event.preventDefault()
   }
 
+  // 取消选中
+  const blurCurrentItem = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setCurrentItem(null)
+  }
+
   return (
-    <div className="preview-main">
+    <div className="preview-main" onClick={blurCurrentItem}>
       <Toolbar />
       <div className="default-scrollbar" id="preview">
         <div

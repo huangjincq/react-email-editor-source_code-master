@@ -32,12 +32,6 @@ const Main = ({ language }) => {
     setLanguage(language)
   }, [language])
 
-  // 取消选中
-  const blurCurrentItem = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
-    setCurrentItem(null)
-  }
   const clearLabelStyles = () => {
     const dragLabelElements = document.getElementsByClassName('block-drag-label-content')
     Array.from(dragLabelElements).forEach((item) => {
@@ -271,7 +265,7 @@ const Main = ({ language }) => {
     <>
       <div className="email-editor" onDragOver={onDragOver} onDrop={onDrop} onDragLeave={onDragLeave}>
         <Header />
-        <div className="email-editor-main" onClick={blurCurrentItem}>
+        <div className="email-editor-main">
           <LeftSideBar clearStyles={clearStyles} />
           <Preview clearStyles={clearStyles} />
           <RightSetting />

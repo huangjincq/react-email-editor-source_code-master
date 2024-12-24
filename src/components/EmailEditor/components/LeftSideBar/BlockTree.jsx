@@ -1,4 +1,4 @@
-import { useState, useContext, useMemo } from 'react'
+import { useState, useContext, useMemo, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
@@ -6,11 +6,44 @@ import { blockConfigIconsMap } from '../../configs/blockConfigsList'
 import { Tree } from 'antd'
 
 const BlockTree = (props) => {
-  const { setCurrentItem, setIsDragStart, blockList, setActionType } = useContext(GlobalContext)
+  const { setCurrentItem, currentItem, blockList } = useContext(GlobalContext)
 
-  const treeData = useMemo(() => {
-    return formatTreeData(blockList)
-  }, [blockList])
+  console.log(currentItem)
+
+  const [autoExpandParent, setAutoExpandParent] = useState(false)
+  const [expandedKeys, setExpandedKeys] = useState([])
+
+  const treeData = useMemo(() => formatTreeData(blockList), [blockList])
+  const selectedKeys = currentItem ? [String(currentItem.index)] : []
+
+  const onSelect = (selectedKeys, info) => {
+    // 如果点击的是content节点，则选中父级Column节点
+    if (['content', 'empty', 'column'].includes(info.node._key)) {
+      const index = Number(info.node.key[0])
+      setCurrentItem({ data: blockList[index], type: 'edit', index })
+    } else {
+      const indexArr = info.node?.key?.split('-')
+      const item = blockList[indexArr[0]]?.children?.[indexArr[1]]?.children?.[indexArr[2]]
+
+      setCurrentItem({ data: item, type: 'edit', index: info.node?.key })
+    }
+  }
+
+  const handleExpand = (expandedKeys) => {
+    setAutoExpandParent(false)
+    setExpandedKeys(expandedKeys)
+  }
+
+  useEffect(() => {
+    if (currentItem) {
+      const stringIndex = String(currentItem.index)
+      const indexArr = stringIndex.split('-')
+      if (indexArr.length > 1) {
+        setAutoExpandParent(true)
+        setExpandedKeys((current) => [...current, stringIndex])
+      }
+    }
+  }, [currentItem])
 
   return (
     <div className="block-tree">
@@ -19,8 +52,12 @@ const BlockTree = (props) => {
       </div>
       <Tree
         showIcon
-        // onSelect={onSelect}
-        // onCheck={onCheck}
+        blockNode
+        autoExpandParent={autoExpandParent}
+        expandedKeys={expandedKeys}
+        selectedKeys={selectedKeys}
+        onExpand={handleExpand}
+        onSelect={onSelect}
         treeData={treeData}
       />
     </div>

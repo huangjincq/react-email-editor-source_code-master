@@ -54,7 +54,7 @@ const LeftSideBar = (props) => {
         key="blocks"
       >
         <div className="side-bar-blocks-container">
-          {blockConfigsList.map((item) => {
+          {blockConfigsList.map(({ icon, ...item }) => {
             return (
               <div
                 className="side-bar-blocks-item"
@@ -65,7 +65,7 @@ const LeftSideBar = (props) => {
                 onDragStart={dragStart(item)}
               >
                 <div className="sidebar-block">
-                  <FontAwesomeIcon icon={item.icon} className="sidebar-block-icon" />
+                  <FontAwesomeIcon icon={icon} className="sidebar-block-icon" />
                   <div className="sidebar-block-text">{item.name}</div>
                 </div>
               </div>
