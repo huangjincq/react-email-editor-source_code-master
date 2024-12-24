@@ -123,12 +123,33 @@
   min-width: 380px;
   background: var(--left-sidebar-background);
   height: 100%;
-  display: flex;
   border-right: 1px solid var(--border-color);
+}
+
+.side-bar-top {
+  display: flex;
+  height: 50%;
 }
 
 .side-bar-tabs {
   background: var(--left-sidebar-tabs-background);
+}
+
+.block-tree {
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+}
+.block-tree .ant-tree {
+  overflow-y: auto;
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+}
+.block-tree-title {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 14px;
 }
 
 .side-bar-item-default {

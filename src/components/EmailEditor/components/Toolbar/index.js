@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { Tooltip, Button, Space } from 'antd'
+import { Tooltip, Button, Space, Modal } from 'antd'
 // import { deepClone } from "../../utils/helpers";
 import { GlobalContext } from '../../reducers'
 import { deepClone } from '../../utils/helpers'
@@ -14,7 +14,17 @@ const Header = () => {
   const { histories, index } = blockListHistory
 
   const handleClearAll = () => {
-    setBlockList([], 'delete')
+    Modal.confirm({
+      title: 'Clear page',
+      content: 'Are you sure you want to clear the page?',
+      okText: 'Clear Page',
+      okButtonProps: {
+        danger: true
+      },
+      onOk: () => {
+        setBlockList([], 'delete')
+      }
+    })
   }
 
   useEffect(() => {
@@ -72,7 +82,7 @@ const Header = () => {
         <div className="header-box text-center"></div>
         <div className="header-box text-right">
           <Space>
-            <Tooltip title="Clear All">
+            <Tooltip title="Clear page">
               <Button
                 onClick={handleClearAll}
                 disabled={blockList.length === 0}

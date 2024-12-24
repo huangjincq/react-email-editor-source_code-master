@@ -2,27 +2,16 @@ import { useState, useContext } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from '../../utils/classNames'
-
-import {
-  faColumns,
-  faMinusSquare,
-  faHeading,
-  faFont,
-  faGripLines,
-  faImages,
-  faCubes,
-  faImage,
-  faShareAltSquare
-} from '@fortawesome/free-solid-svg-icons'
+import { faImages, faCubes } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
 import { deepClone } from '../../utils/helpers'
-import useDataSource from '../../configs/useDataSource'
+import blockConfigsList from '../../configs/blockConfigsList'
+import BlockTree from './BlockTree'
 
 const LeftSideBar = (props) => {
   const { clearStyles } = props
   const { setCurrentItem, setIsDragStart, blockList, setActionType } = useContext(GlobalContext)
   const [currentSideBarKey, setCurrentSideBarKey] = useState('blocks')
-  const { blockConfigsList } = useDataSource()
 
   const sidebarTabsList = [
     {
@@ -36,16 +25,6 @@ const LeftSideBar = (props) => {
       key: 'photos'
     }
   ]
-
-  const icons = {
-    column: faColumns,
-    text: faFont,
-    heading: faHeading,
-    button: faMinusSquare,
-    divider: faGripLines,
-    image: faImage,
-    social_link: faShareAltSquare
-  }
 
   const dragEnd = (event) => {
     event.target.style.border = ''
@@ -86,7 +65,7 @@ const LeftSideBar = (props) => {
                 onDragStart={dragStart(item)}
               >
                 <div className="sidebar-block">
-                  <FontAwesomeIcon icon={icons[item.key]} className="sidebar-block-icon" />
+                  <FontAwesomeIcon icon={item.icon} className="sidebar-block-icon" />
                   <div className="sidebar-block-text">{item.name}</div>
                 </div>
               </div>
@@ -99,31 +78,34 @@ const LeftSideBar = (props) => {
 
   return (
     <div className="side-bar">
-      <div className="side-bar-tabs">
-        {sidebarTabsList.map((item) => {
-          const { key, icon, name } = item
-          return (
-            <div
-              onClick={() => {
-                if (key !== currentSideBarKey) {
-                  setCurrentSideBarKey(key)
-                }
-              }}
-              className={classNames(
-                currentSideBarKey === key ? 'side-bar-tab-item-active' : 'side-bar-tab-item',
-                'side-bar-item-default'
-              )}
-              key={key}
-            >
-              <FontAwesomeIcon icon={icon} className="text-18" />
-              <div className="side-bar-icon-title">{name}</div>
-            </div>
-          )
-        })}
+      <div className="side-bar-top">
+        <div className="side-bar-tabs">
+          {sidebarTabsList.map((item) => {
+            const { key, icon, name } = item
+            return (
+              <div
+                onClick={() => {
+                  if (key !== currentSideBarKey) {
+                    setCurrentSideBarKey(key)
+                  }
+                }}
+                className={classNames(
+                  currentSideBarKey === key ? 'side-bar-tab-item-active' : 'side-bar-tab-item',
+                  'side-bar-item-default'
+                )}
+                key={key}
+              >
+                <FontAwesomeIcon icon={icon} className="text-18" />
+                <div className="side-bar-icon-title">{name}</div>
+              </div>
+            )
+          })}
+        </div>
+        <div className="side-bar-content">
+          <AnimatePresence mode="wait">{currentSideBarKey === 'blocks' && blocksElement()}</AnimatePresence>
+        </div>
       </div>
-      <div className="side-bar-content">
-        <AnimatePresence mode="wait">{currentSideBarKey === 'blocks' && blocksElement()}</AnimatePresence>
-      </div>
+      <BlockTree />
     </div>
   )
 }
