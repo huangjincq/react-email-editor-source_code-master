@@ -119,8 +119,7 @@
 }
 
 .side-bar {
-  width: 380px;
-  min-width: 380px;
+  width: 340px;
   background: var(--left-sidebar-background);
   height: 100%;
   border-right: 1px solid var(--border-color);
@@ -154,7 +153,7 @@
 }
 
 .side-bar-item-default {
-  padding: 12px 18px;
+  padding: 12px 8px;
   cursor: pointer;
   text-align: center;
   user-select: none;

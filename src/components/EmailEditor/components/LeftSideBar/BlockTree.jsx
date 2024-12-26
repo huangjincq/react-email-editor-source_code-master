@@ -8,8 +8,6 @@ import { Tree } from 'antd'
 const BlockTree = (props) => {
   const { setCurrentItem, currentItem, blockList } = useContext(GlobalContext)
 
-  console.log(currentItem)
-
   const [autoExpandParent, setAutoExpandParent] = useState(false)
   const [expandedKeys, setExpandedKeys] = useState([])
 
