@@ -6,7 +6,8 @@ import {
   faGripLines,
   faImage,
   faBorderNone,
-  faLayerGroup
+  faLayerGroup,
+  faNewspaper
 } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 
@@ -149,6 +150,24 @@ const blockConfigsList = [
     alt: 'Image',
     type: 'link',
     linkURL: '',
+    contentStyles: {
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: 'center'
+    },
+    styles: {
+      width: 'auto'
+    }
+  },
+  {
+    name: 'Info',
+    key: 'info',
+    icon: faNewspaper,
+    labelSpan: 4,
+    dataSource: [],
+    dataSourceKey: undefined,
     contentStyles: {
       paddingTop: 12,
       paddingBottom: 12,

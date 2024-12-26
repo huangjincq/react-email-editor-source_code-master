@@ -104,6 +104,7 @@ const Main = ({ language }) => {
     event.stopPropagation()
     const { type } = event.target.dataset
     setIsDragStart(false)
+
     switch (type) {
       // 第一次添加元素
       case 'empty-block':

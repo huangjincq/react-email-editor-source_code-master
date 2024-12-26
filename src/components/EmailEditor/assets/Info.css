@@ -1,0 +1,8 @@
+.block-item-info {
+  line-height: 1.8;
+  text-align: left;
+}
+
+.block-item-info .info-label {
+  font-weight: bold;
+}

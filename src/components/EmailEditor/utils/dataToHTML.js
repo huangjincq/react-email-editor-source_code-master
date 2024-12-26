@@ -71,17 +71,14 @@ const createDividerString = (dividerBLock) => {
   </div>`
 }
 
-const createSocialLinkString = (socialLinkBlock) => {
-  return `<div style="${socialLinkBlock.contentStyleConfig}">
-    ${socialLinkBlock.list
-      .map((socialLinkItem) => {
-        const { image, title, linkURL } = socialLinkItem
-        return `<a target="_black" href="https://${linkURL}" style="${socialLinkBlock.styleConfig};display:inline-block;">
-        <img src="${image}" alt="${title}" style="width:${socialLinkBlock.imageWidth}px;" /> 
-      </a>`
-      })
-      .join('')}
-  </div>`
+const createInfoString = (info) => {
+  return `<div style="${info.contentStyleConfig}">
+  <table style="width:100%;margin:0 auto;">
+    <tbody>
+    ${info.dataSource.map(({ displayName, fieldId }) => `<tr><td style="width: ${((info.labelSpan / 24) * 100).toFixed(2)}%;font-weight:bold">${displayName}: </td><td>${fieldId}</td></tr>`).join('')}
+    </tbody>
+  </table>
+</div>`
 }
 
 const blockListToHtml = (blockList, bodySettings) => {
@@ -118,8 +115,8 @@ const blockListToHtml = (blockList, bodySettings) => {
       content += createDividerString(item)
     }
 
-    if (item.key === 'social_link') {
-      content += createSocialLinkString(item)
+    if (item.key === 'info') {
+      content += createInfoString(item)
     }
   })
 
