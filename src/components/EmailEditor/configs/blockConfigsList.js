@@ -6,7 +6,6 @@ import {
   faGripLines,
   faImage,
   faBorderNone,
-  faLayerGroup,
   faNewspaper
 } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
