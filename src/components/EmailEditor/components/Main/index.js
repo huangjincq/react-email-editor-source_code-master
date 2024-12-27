@@ -7,12 +7,11 @@ import Preview from '../Preview'
 import Header from '../Header'
 import RightSetting from '../RightSetting'
 import useTranslation from '../../translation'
-import useDataSource from '../../configs/useDataSource'
+import getColumnConfig from '../../configs/getColumnConfig'
 
 const Main = ({}) => {
   const { blockList, setBlockList, currentItem, setCurrentItem, setIsDragStart } = useContext(GlobalContext)
   const { t } = useTranslation()
-  const { getColumnConfig } = useDataSource()
 
   const defaultContentConfig = {
     name: t('drag_block_here'),

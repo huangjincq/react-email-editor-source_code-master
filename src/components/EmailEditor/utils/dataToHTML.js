@@ -92,7 +92,7 @@ const blockListToHtml = (blockList, bodySettings) => {
     }
 
     if (item.key === 'content') {
-      content += `<td style="width:${item.width}; ${item.styleConfig}">${blockListToHtml(item.children)}</td>`
+      content += `<td style="width:${item.propValue}; ${item.styleConfig}">${blockListToHtml(item.children)}</td>`
     }
 
     if (item.key === 'text') {

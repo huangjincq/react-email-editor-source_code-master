@@ -2,23 +2,21 @@ import { useContext, useState } from 'react'
 import { GlobalContext } from '../../reducers'
 import classNames from '../../utils/classNames'
 import { Modal, Tabs } from 'antd'
-
 import { deepClone } from '../../utils/helpers'
 import ColorPicker from '../ColorPicker'
 import PaddingSettings from './PaddingSettings'
 import useStyleLayout from '../../utils/useStyleLayout'
-import useDataSource from '../../configs/useDataSource'
+import columnsSetting from '../../configs/columnsSetting'
 import useTranslation from '../../translation'
 
 const ColumnStyleSettings = () => {
   const { currentItem } = useContext(GlobalContext)
   const { t } = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [currentColumnType, setCurrentColumnType] = useState(null)
+  const [currentColumnType, setCurrentColumnType] = useState<string | null>(null)
   const { findStyleItem, cardItemElement, updateItemStyles, colorChange, paddingChange } = useStyleLayout()
-  const { columnsSetting } = useDataSource()
 
-  const columnChange = (type) => () => {
+  const columnChange = (type: string) => () => {
     if (currentItem.data.children.length > columnsSetting[type].children.length) {
       setIsModalOpen(true)
       setCurrentColumnType(type)
@@ -28,10 +26,10 @@ const ColumnStyleSettings = () => {
     const newData = {
       ...currentItem.data,
       ...newColumnConfig,
-      children: newColumnConfig.children.map((item, index) => {
+      children: newColumnConfig.children.map((item: any, index: number) => {
         let newItem = item
         if (currentItem.data.children[index]) {
-          newItem = { ...currentItem.data.children[index], width: item.width }
+          newItem = { ...currentItem.data.children[index], propValue: item.propValue }
         }
         return { ...newItem }
       })
@@ -40,14 +38,14 @@ const ColumnStyleSettings = () => {
   }
 
   const handleOk = () => {
-    const newColumnConfig = columnsSetting[currentColumnType]
+    const newColumnConfig = columnsSetting[currentColumnType!]
     const newData = {
       ...currentItem.data,
       ...newColumnConfig,
-      children: newColumnConfig.children.map((item, index) => {
+      children: newColumnConfig.children.map((item: any, index: number) => {
         let newItem = item
         if (currentItem.data.children[index]) {
-          newItem = { ...currentItem.data.children[index], width: item.width }
+          newItem = { ...currentItem.data.children[index], propValue: item.propValue }
         }
         return { ...newItem }
       })
@@ -96,14 +94,14 @@ const ColumnStyleSettings = () => {
     }
   ]
 
-  const changeColumnList = (key, index) => (value) => {
-    const newData = deepClone(currentItem.data)
-    newData.children[index].styles[key] = value
+  const changeColumnList = (key: string, index: number) => (value: string) => {
+    const newData: any = deepClone(currentItem.data)
+    newData.children![index].styles[key] = value
     updateItemStyles(newData)
   }
 
-  const changePaddingStyle = (index) => (padding) => {
-    const newData = deepClone(currentItem.data)
+  const changePaddingStyle = (index: any) => (padding: any) => {
+    const newData: any = deepClone(currentItem.data)
     newData.children[index].styles = {
       ...newData.children[index].styles,
       ...padding
@@ -158,7 +156,7 @@ const ColumnStyleSettings = () => {
             inkBar: true,
             tabPane: true
           }}
-          items={currentItem.data.children.map((item, index) => {
+          items={currentItem.data.children.map((item: any, index: number) => {
             const key = index + 1
             const backgroundColor = findStyleItem(item.styles, 'backgroundColor')
             return {
@@ -170,7 +168,7 @@ const ColumnStyleSettings = () => {
                     t('content_background_color'),
                     <ColorPicker
                       color={backgroundColor}
-                      setColor={({ hex }) => changeColumnList('backgroundColor', index)(hex)}
+                      setColor={({ hex }: any) => changeColumnList('backgroundColor', index)(hex)}
                     />
                   )}
                   <PaddingSettings

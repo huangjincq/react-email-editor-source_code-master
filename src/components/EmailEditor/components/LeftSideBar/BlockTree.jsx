@@ -2,7 +2,7 @@ import { useState, useContext, useMemo, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
-import { blockConfigIconsMap } from '../../configs/blockConfigsList'
+import { blockConfigsMap } from '../../configs/blockConfigsList'
 import { Tree } from 'antd'
 
 const BlockTree = (props) => {
@@ -75,7 +75,7 @@ const formatTreeData = (treeData, parentId = '') => {
       _key: node.key,
       key: id,
       title: node.name,
-      icon: <FontAwesomeIcon icon={blockConfigIconsMap[node.key]} />
+      icon: <FontAwesomeIcon icon={blockConfigsMap[node.key].icon} />
     }
 
     // 如果节点有子节点，则递归调用assignIds函数，并设置新的parentId

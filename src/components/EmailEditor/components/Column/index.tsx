@@ -6,8 +6,15 @@ import { faArrowsAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { deepClone } from '../../utils/helpers'
 import BlockItems from '../BlockItems'
 import useTranslation from '../../translation'
+import { IBlockItem } from '../../types'
 
-const Column = (props) => {
+interface ColumnProps {
+  block: IBlockItem
+  blockIndex: number
+  clearStyles: () => void
+}
+
+const Column = (props: ColumnProps) => {
   const { block, blockIndex, clearStyles } = props
   const { t } = useTranslation()
   const {
@@ -24,19 +31,19 @@ const Column = (props) => {
   let columnStyles = block.styles
   const { contentBackground, ...newStyles } = columnStyles
 
-  const deleteBlock = (event) => {
+  const deleteBlock = (event: any) => {
     event.preventDefault()
     event.stopPropagation()
-    const newBlockList = deepClone(blockList)
+    const newBlockList: any = deepClone(blockList)
     newBlockList.splice(blockIndex, 1)
     setBlockList(newBlockList, 'delete')
     setCurrentItem(null)
   }
 
-  const deleteBlockItem = (index) => (event) => {
+  const deleteBlockItem = (index: string) => (event: any) => {
     event.preventDefault()
     event.stopPropagation()
-    const newBlockList = deepClone(blockList)
+    const newBlockList: any = deepClone(blockList)
     const indexArr = index.split('-')
     const blockIndex = indexArr[0]
     const contentIndex = indexArr[1]
@@ -67,7 +74,7 @@ const Column = (props) => {
     setActionType('move')
   }
 
-  const dragEnd = (event) => {
+  const dragEnd = (event: any) => {
     event.preventDefault()
     event.stopPropagation()
     // 父元素的onDrop和onDragOver事件有30ms的延迟，所以这里延迟确保blockList和currentItem更新后50ms清除样式
@@ -79,7 +86,7 @@ const Column = (props) => {
     }, 50)
   }
 
-  const blockItemElement = (item, index) => {
+  const blockItemElement = (item: any, index: string) => {
     const nextIndex = index
       .split('-')
       .map((item, itemIndex) => {
@@ -165,7 +172,7 @@ const Column = (props) => {
     )
   }
 
-  const preventDefault = (event) => {
+  const preventDefault = (event: any) => {
     event.preventDefault()
   }
 
@@ -224,14 +231,17 @@ const Column = (props) => {
               style={{ background: contentBackground, width: bodySettings.contentWidth }}
               data-index={blockIndex}
             >
-              {block.children.map((content, index) => {
+              {block?.children?.map((content, index) => {
                 let contentStyles = content.styles
                 return (
                   <Fragment key={index}>
-                    <div id={`block-content-${blockIndex}-${index}`} style={{ ...contentStyles, width: content.width }}>
-                      {content.children.map((item, itemIndex) => {
+                    <div
+                      id={`block-content-${blockIndex}-${index}`}
+                      style={{ ...contentStyles, width: content.propValue }}
+                    >
+                      {content.children?.map((item, itemIndex) => {
                         const blockItemIndex = `${blockIndex}-${index}-${itemIndex}`
-                        const isLastKid = itemIndex === content.children.length - 1 && item.key !== 'empty'
+                        const isLastKid = itemIndex === content.children!.length - 1 && item.key !== 'empty'
                         return (
                           <Fragment key={itemIndex}>
                             {blockItemElement(item, blockItemIndex)}
