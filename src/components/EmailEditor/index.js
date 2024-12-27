@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useReducer, forwardRef, useImperativeHandle } from 'react'
 import {
   GlobalContext,
   reducer,
@@ -9,9 +9,7 @@ import {
   setIsDragStart,
   setSelectionRange,
   setTextRange,
-  defaultState,
-  setLanguage,
-  setLanguageLibraries
+  defaultState
 } from './reducers'
 import Main from './components/Main'
 import './assets/App.css'
@@ -54,16 +52,10 @@ const EmailEditor = ({ defaultBlockList }) => {
         },
         setActionType: (actionType) => {
           dispatch(setActionType(actionType))
-        },
-        setLanguage: (language) => {
-          dispatch(setLanguage(language))
-        },
-        setLanguageLibraries: (languageLibraries) => {
-          dispatch(setLanguageLibraries(languageLibraries))
         }
       }}
     >
-      <Main language="en" />
+      <Main />
     </GlobalContext.Provider>
   )
 }

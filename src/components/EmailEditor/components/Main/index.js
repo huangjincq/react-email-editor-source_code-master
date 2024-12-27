@@ -9,9 +9,8 @@ import RightSetting from '../RightSetting'
 import useTranslation from '../../translation'
 import useDataSource from '../../configs/useDataSource'
 
-const Main = ({ language }) => {
-  const { blockList, setBlockList, currentItem, setCurrentItem, setIsDragStart, setLanguage } =
-    useContext(GlobalContext)
+const Main = ({}) => {
+  const { blockList, setBlockList, currentItem, setCurrentItem, setIsDragStart } = useContext(GlobalContext)
   const { t } = useTranslation()
   const { getColumnConfig } = useDataSource()
 
@@ -27,10 +26,6 @@ const Main = ({ language }) => {
       paddingBottom: 0
     }
   }
-
-  useEffect(() => {
-    setLanguage(language)
-  }, [language])
 
   const clearLabelStyles = () => {
     const dragLabelElements = document.getElementsByClassName('block-drag-label-content')

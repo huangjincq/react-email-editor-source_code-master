@@ -7,8 +7,6 @@ const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 const SET_BODY_SETTINGS = 'SET_BODY_SETTINGS'
 const SET_SELECTION_RANGE = 'SET_SELECTION_RANGE'
 const SET_TEXT_RANGE = 'SET_TEXT_RANGE'
-const SET_LANGUAGE = 'SET_LANGUAGE'
-const SET_LANGUAGE_LIBRARIES = 'SET_LANGUAGE_LIBRARIES'
 
 export const setTextRange = (textRange) => {
   return {
@@ -59,21 +57,6 @@ export const setBodySettings = (bodySettings) => {
   }
 }
 
-export const setLanguage = (language) => {
-  return {
-    type: SET_LANGUAGE,
-    language: language
-  }
-}
-
-export const setLanguageLibraries = (languageLibraries) => {
-  return {
-    type: SET_LANGUAGE_LIBRARIES,
-    languageLibraries: languageLibraries
-  }
-}
-
-export const defaultLanguage = 'en'
 export const defaultBlockList = []
 export const defaultIsDragStart = false
 export const defaultActionType = 'firstRender' // firstRender, add, move, delete,edit, set_history_${index}, edit_${Date.now()}
@@ -89,7 +72,6 @@ export const defaultBodySettings = {
 }
 export const defaultSelectionRange = null
 export const textRange = null
-export const defaultLanguageLibraries = {}
 
 export const defaultState = {
   blockList: defaultBlockList,
@@ -98,9 +80,7 @@ export const defaultState = {
   currentItem: defaultCurrentItem,
   bodySettings: defaultBodySettings,
   selectionRange: defaultSelectionRange,
-  textRange: textRange,
-  language: defaultLanguage,
-  languageLibraries: defaultLanguageLibraries
+  textRange: textRange
 }
 
 export const GlobalContext = createContext()
@@ -141,16 +121,6 @@ export function reducer(state, action) {
       return {
         ...state,
         textRange: action.textRange
-      }
-    case SET_LANGUAGE:
-      return {
-        ...state,
-        language: action.language
-      }
-    case SET_LANGUAGE_LIBRARIES:
-      return {
-        ...state,
-        languageLibraries: action.languageLibraries
       }
     default:
       return state
