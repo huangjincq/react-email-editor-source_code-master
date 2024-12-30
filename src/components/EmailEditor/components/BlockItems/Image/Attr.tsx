@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignCenter, faAlignLeft, faAlignRight, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
 import { IBlockItemProps } from '../../../types'
 import { IImageValue } from './type'
-import PaddingSettings from '../../StyleSettings/PaddingSettings'
-import CardItemElement from '../../CardItemElement'
+import PaddingSettings from '../common/PaddingSettings'
+import CardItemElement from '../common/CardItemElement'
 
-interface ImageAttrProps extends IBlockItemProps<IImageValue> {}
+type ImageAttrProps = IBlockItemProps<IImageValue>
 
 const ImageAttr = ({ value, styles, onChange, onStylesChange }: ImageAttrProps) => {
   const handleStyleChange = (newStyles: any) => {

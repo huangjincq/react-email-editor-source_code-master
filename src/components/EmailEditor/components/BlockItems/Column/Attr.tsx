@@ -4,8 +4,8 @@ import classNames from '../../../utils/classNames'
 import { Modal, Tabs } from 'antd'
 import columnsSetting from './columnsSetting'
 import ColorPicker from '../../ColorPicker'
-import PaddingSettings from '../../StyleSettings/PaddingSettings'
-import CardItemElement from '../../CardItemElement'
+import PaddingSettings from '../common/PaddingSettings'
+import CardItemElement from '../common/CardItemElement'
 import { cloneDeep } from 'lodash-es'
 
 const columnList = [

@@ -1,9 +1,9 @@
 import { Key } from 'react'
 import { Select, Table } from 'antd'
-import PaddingSettings from '../../StyleSettings/PaddingSettings'
+import PaddingSettings from '../common/PaddingSettings'
 import { IBlockItemProps } from '../../../types'
 import { IInfoValue } from './type'
-import CardItemElement from '../../CardItemElement'
+import CardItemElement from '../common/CardItemElement'
 const mockDataSourceOptions = [
   {
     label: 'User Info',
@@ -31,7 +31,7 @@ const mockDataSourceOptions = [
   { label: 'Fee', value: 'fee', fields: [] }
 ]
 
-interface InfoAttrProps extends IBlockItemProps<IInfoValue> {}
+type InfoAttrProps = IBlockItemProps<IInfoValue>
 
 const InfoAttr = ({ value = {} as IInfoValue, styles, onChange, onStylesChange }: InfoAttrProps) => {
   const handleDataSourceChange = (val: string, options: any) => {

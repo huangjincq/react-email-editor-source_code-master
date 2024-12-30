@@ -3,10 +3,10 @@ import { InputNumber, Select } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignCenter, faAlignLeft, faAlignRight, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
 import ColorPicker from '../../ColorPicker'
-import PaddingSettings from '../../StyleSettings/PaddingSettings'
+import PaddingSettings from '../common/PaddingSettings'
 import { IBlockItemProps } from '../../../types'
 import { ITextValue } from './type'
-import CardItemElement from '../../CardItemElement'
+import CardItemElement from '../common/CardItemElement'
 
 const fontFamilyList = [
   'sans-serif',
@@ -21,7 +21,7 @@ const fontFamilyList = [
   'cursive'
 ]
 
-interface TextAttrProps extends IBlockItemProps<ITextValue> {}
+type TextAttrProps = IBlockItemProps<ITextValue>
 
 const TextAttr = ({ value, styles, onChange, onStylesChange }: TextAttrProps) => {
   const handleStyleChange = (newStyles: any) => {

@@ -3,8 +3,8 @@ import { Switch, Slider, Input, InputNumber, Select } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignCenter, faAlignLeft, faAlignRight, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
 import { IBlockItemProps } from '../../../types'
-import PaddingSettings from '../../StyleSettings/PaddingSettings'
-import CardItemElement from '../../CardItemElement'
+import PaddingSettings from '../common/PaddingSettings'
+import CardItemElement from '../common/CardItemElement'
 import ColorPicker from '../../ColorPicker'
 
 const dividerType = [
@@ -12,7 +12,7 @@ const dividerType = [
   { label: 'Dotted', value: 'dotted' },
   { label: 'Dashed', value: 'dashed' }
 ]
-interface DividerAttrProps extends IBlockItemProps<undefined> {}
+type DividerAttrProps = IBlockItemProps<undefined>
 const DividerAttr = ({ value, styles, onStylesChange }: DividerAttrProps) => {
   const { textAlign, width, borderTopColor, borderTopWidth, borderTopStyle } = styles
 
