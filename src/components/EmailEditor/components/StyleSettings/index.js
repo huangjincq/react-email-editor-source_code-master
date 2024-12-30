@@ -7,7 +7,7 @@ import HeadingStyleSettings from './HeadingStyleSettings'
 import ButtonStyleSettings from './ButtonStyleSettings'
 import DividerStyleSettings from './DividerStyleSettings'
 import ImageStyleSettings from './ImageStyleSettings'
-import Info from './Info'
+// import Info from './Info'
 
 const StyleSettings = () => {
   const { currentItem } = useContext(GlobalContext)
@@ -20,7 +20,7 @@ const StyleSettings = () => {
       {currentItem?.data.key === 'button' && <ButtonStyleSettings />}
       {currentItem?.data.key === 'divider' && <DividerStyleSettings />}
       {currentItem?.data.key === 'image' && <ImageStyleSettings />}
-      {currentItem?.data.key === 'info' && <Info />}
+      {/* {currentItem?.data.key === 'info' && <Info />} */}
     </>
   )
 }

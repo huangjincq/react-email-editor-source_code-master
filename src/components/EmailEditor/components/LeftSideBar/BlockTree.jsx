@@ -77,7 +77,6 @@ const formatTreeData = (treeData, parentId = '') => {
       title: node.name,
       icon: <FontAwesomeIcon icon={blockConfigsMap[node.key].icon} />
     }
-
     // 如果节点有子节点，则递归调用assignIds函数，并设置新的parentId
     if (node.children && node.children.length > 0) {
       newNode.children = formatTreeData(node.children, id)

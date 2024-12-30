@@ -10,6 +10,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 import { BlockKeyEnum, IBlockConfigItem, IBlockConfigsMap, IBlockItemMap } from '../types'
+import { IInfoValue } from '../components/BlockItems/Info/type'
+import InfoComponent from '../components/BlockItems/Info/Component'
+import InfoAttr from '../components/BlockItems/Info/Attr'
+import ColumnAttr from '../components/BlockItems/Column/Attr'
 
 const blockConfigsList: IBlockConfigItem[] = [
   {
@@ -17,6 +21,7 @@ const blockConfigsList: IBlockConfigItem[] = [
     key: BlockKeyEnum.Column,
     propValue: 'full',
     icon: faColumns,
+    attrComponent: ColumnAttr,
     styles: {
       backgroundColor: 'transparent',
       paddingTop: 0,
@@ -55,6 +60,25 @@ const blockConfigsList: IBlockConfigItem[] = [
         ]
       }
     ]
+  },
+  {
+    name: 'Info',
+    key: BlockKeyEnum.Info,
+    icon: faNewspaper,
+    propValue: {
+      dataSource: [],
+      labelSpan: 4,
+      dataSourceKey: undefined
+    } as IInfoValue,
+    component: InfoComponent,
+    attrComponent: InfoAttr,
+    styles: {
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: 'center'
+    }
   }
 ]
 

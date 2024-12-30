@@ -1,22 +1,22 @@
 import { Fragment, useContext } from 'react'
-import { GlobalContext } from '../../reducers'
-import classNames from '../../utils/classNames'
+import { GlobalContext } from '../../../reducers'
+import classNames from '../../../utils/classNames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowsAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { deepClone } from '../../utils/helpers'
-import BlockItems from '../BlockItems'
-import useTranslation from '../../translation'
-import { IBlockItem } from '../../types'
+import { deepClone } from '../../../utils/helpers'
+import BlockComponent from '../BlockComponent'
+import { BlockKeyEnum, IBlockItem, IBlockItemProps } from '../../../types'
+import { IColumnValue } from './type'
+import { blockItemMap } from '../../../configs/blockConfigsList'
 
-interface ColumnProps {
-  block: IBlockItem
-  blockIndex: number
+interface ColumnComponentProps extends IBlockItemProps<IColumnValue> {
   clearStyles: () => void
+  blockIndex: number
+  block: IBlockItem
 }
 
-const Column = (props: ColumnProps) => {
+const ColumnComponent = (props: ColumnComponentProps) => {
   const { block, blockIndex, clearStyles } = props
-  const { t } = useTranslation()
   const {
     blockList,
     currentItem,
@@ -51,18 +51,7 @@ const Column = (props: ColumnProps) => {
     const item = newBlockList[blockIndex].children[contentIndex].children
     item.splice(itemIndex, 1)
     if (item.length === 0) {
-      item.push({
-        name: t('drag_block_here'),
-        key: 'empty',
-        width: '100%',
-        styles: {
-          backgroundColor: 'transparent',
-          paddingTop: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-          paddingBottom: 0
-        }
-      })
+      item.push(blockItemMap[BlockKeyEnum.Column]!.children![0]!.children![0])
     }
     setBlockList(newBlockList, 'delete')
     setCurrentItem(null)
@@ -108,7 +97,7 @@ const Column = (props: ColumnProps) => {
                 data-index={index}
                 data-type="empty-block-item"
               >
-                {t('drag_block_here')}
+                Drag block here
               </div>
             )}
             {item.name}
@@ -117,7 +106,7 @@ const Column = (props: ColumnProps) => {
           <>
             <div className="relative block-content-drag-label-content" data-index={index} data-type="block-item">
               <div className="absolute block-move-top">
-                <span className="block-tools-drag_here">{t('drag_block_here')}</span>
+                <span className="block-tools-drag_here">Drag block here</span>
               </div>
             </div>
             <div className="block-item">
@@ -163,7 +152,7 @@ const Column = (props: ColumnProps) => {
                     <FontAwesomeIcon icon={faArrowsAlt} />
                   </span>
                 </div>
-                <BlockItems blockItem={item} index={index} />
+                <BlockComponent blockItem={item} index={index} />
               </div>
             </div>
           </>
@@ -180,7 +169,7 @@ const Column = (props: ColumnProps) => {
     <>
       <div className="relative block-drag-label-content" data-index={blockIndex} data-position="top">
         <div className="absolute block-move-top">
-          <span className="block-tools-drag_here">{t('drag_block_here')}</span>
+          <span className="block-tools-drag_here">Drag block here</span>
         </div>
         <div
           className={classNames('relative block', currentItem && currentItem.index === blockIndex && 'block-focus')}
@@ -251,7 +240,7 @@ const Column = (props: ColumnProps) => {
                                 data-index={`${blockIndex}-${index}-${itemIndex + 1}`}
                               >
                                 <div className="absolute block-move-bottom">
-                                  <span className="block-tools-drag_here">{t('drag_block_here')}</span>
+                                  <span className="block-tools-drag_here">Drag block here</span>
                                 </div>
                               </div>
                             )}
@@ -270,4 +259,4 @@ const Column = (props: ColumnProps) => {
   )
 }
 
-export default Column
+export default ColumnComponent

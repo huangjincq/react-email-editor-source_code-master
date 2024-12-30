@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ColorPicker from '../ColorPicker'
 import { GlobalContext } from '../../reducers'
 import { InputNumber, Input } from 'antd'
-import StyleSettings from '../StyleSettings'
+// import StyleSettings from '../StyleSettings'
 import useLayout from '../../utils/useStyleLayout'
 import useTranslation from '../../translation'
+import AttrComponent from '../BlockItems/AttrComponent'
 
 const RightSetting = () => {
   const { currentItem, isDragStart, bodySettings, setBodySettings } = useContext(GlobalContext)
@@ -42,7 +43,7 @@ const RightSetting = () => {
     return title
   }
 
-  const colorChange = (key) => (color) => {
+  const colorChange = (key: string) => (color: any) => {
     setBodySettings({ ...bodySettings, styles: { ...bodySettings.styles, [key]: color.hex } }, 'set_body_settings')
   }
 
@@ -86,7 +87,7 @@ const RightSetting = () => {
     )
   }
 
-  const stopPropagation = (event) => {
+  const stopPropagation = (event: any) => {
     event.stopPropagation()
   }
 
@@ -103,7 +104,7 @@ const RightSetting = () => {
           >
             <h2 className="right-setting-block-title">{blockTitle()}</h2>
             <div className="margin-top-18">
-              <StyleSettings />
+              <AttrComponent />
             </div>
           </motion.div>
         ) : (

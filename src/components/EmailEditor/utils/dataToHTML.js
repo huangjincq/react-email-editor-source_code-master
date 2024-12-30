@@ -72,10 +72,10 @@ const createDividerString = (dividerBLock) => {
 }
 
 const createInfoString = (info) => {
-  return `<div style="${info.contentStyleConfig}">
+  return `<div style="${info.propValue.contentStyleConfig}">
   <table style="width:100%;margin:0 auto;">
     <tbody>
-    ${info.dataSource.map(({ displayName, fieldId }) => `<tr><td style="width: ${((info.labelSpan / 24) * 100).toFixed(2)}%;font-weight:bold">${displayName}: </td><td>${fieldId}</td></tr>`).join('')}
+    ${info.propValue.dataSource.map(({ displayName, fieldId }) => `<tr><td style="width: ${((info.propValue.labelSpan / 24) * 100).toFixed(2)}%;font-weight:bold">${displayName}: </td><td>${fieldId}</td></tr>`).join('')}
     </tbody>
   </table>
 </div>`

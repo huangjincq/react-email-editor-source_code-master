@@ -5,7 +5,8 @@ export interface IBlockItemStyles {
 export enum BlockKeyEnum {
   Column = 'column',
   Content = 'content',
-  Empty = 'empty'
+  Empty = 'empty',
+  Info = 'info'
 }
 
 export interface IBlockItem {
@@ -22,8 +23,8 @@ export interface IBlockItemMap {
 
 export interface IBlockConfigItem extends IBlockItem {
   icon: any
-  component?: React.ReactNode // 渲染哪个组件
-  attrComponent?: React.ReactNode // 渲染 哪个属性面板组件
+  component?: (props: IBlockItemProps<any>) => JSX.Element // 渲染哪个组件
+  attrComponent?: (props: IBlockItemProps<any>) => JSX.Element // 渲染 哪个属性面板组件
   children?: IBlockConfigItem[]
 }
 
@@ -32,8 +33,8 @@ export interface IBlockConfigsMap {
 }
 
 export interface IBlockItemProps<T> {
-  value: T
-  onChange?: (value: T) => void
+  value?: T
+  onChange: (value: T) => void
   styles: IBlockItemStyles
-  onStylesChange?: (styles: IBlockItemStyles) => void
+  onStylesChange: (styles: IBlockItemStyles) => void
 }

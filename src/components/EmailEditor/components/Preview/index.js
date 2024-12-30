@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../reducers'
-import Column from '../Column'
+import ColumnComponent from '../BlockItems/Column/Component'
 import { throttle } from '../../utils/helpers'
 import Toolbar from '../Toolbar'
 import useTranslation from '../../translation'
@@ -59,7 +59,7 @@ const Preview = (props) => {
                 {blockList.map((block, index) => {
                   return (
                     <Fragment key={index}>
-                      <Column block={block} blockIndex={index} clearStyles={clearStyles} />
+                      <ColumnComponent block={block} blockIndex={index} clearStyles={clearStyles} />
                     </Fragment>
                   )
                 })}
