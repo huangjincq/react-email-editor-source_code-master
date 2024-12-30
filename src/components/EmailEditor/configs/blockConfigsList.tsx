@@ -16,6 +16,8 @@ import InfoAttr from '../components/BlockItems/Info/Attr'
 import ColumnAttr from '../components/BlockItems/Column/Attr'
 import TextComponent from '../components/BlockItems/Text/Component'
 import TextAttr from '../components/BlockItems/Text/Attr'
+import ImageComponent from '../components/BlockItems/Image/Component'
+import ImageAttr from '../components/BlockItems/Image/Attr'
 
 const blockConfigsList: IBlockConfigItem[] = [
   {
@@ -80,6 +82,22 @@ const blockConfigsList: IBlockConfigItem[] = [
       paddingLeft: 12,
       paddingRight: 12,
       textAlign: 'left'
+    }
+  },
+  {
+    name: 'Image',
+    key: BlockKeyEnum.Image,
+    icon: faImage,
+    propValue: '',
+    component: ImageComponent,
+    attrComponent: ImageAttr,
+    styles: {
+      width: 'auto',
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: 'center'
     }
   },
   {

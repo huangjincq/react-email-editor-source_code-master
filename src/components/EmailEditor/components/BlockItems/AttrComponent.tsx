@@ -39,7 +39,7 @@ const AttrComponent = () => {
       styles={currentItem?.data?.styles}
     />
   ) : (
-    <>{currentItem?.data?.key}</>
+    <>{currentItem?.data?.key} 组件未引入</>
   )
 }
 

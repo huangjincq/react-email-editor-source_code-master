@@ -7,6 +7,7 @@ export enum BlockKeyEnum {
   Content = 'content',
   Empty = 'empty',
   Text = 'text',
+  Image = 'image',
   Info = 'info'
 }
 

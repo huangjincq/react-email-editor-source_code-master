@@ -47,7 +47,7 @@ const BlockItems = ({ blockItem, index }: BlockItemsProps) => {
       onStylesChange={handleStylesChange}
     />
   ) : (
-    <>{blockItem.key}</>
+    <>{blockItem.key} 组件未引入</>
   )
 }
 
