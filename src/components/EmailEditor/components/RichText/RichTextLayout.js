@@ -1,16 +1,9 @@
-import { useContext, useRef, useEffect } from 'react'
-import { GlobalContext } from '../../reducers'
+import { useRef, useEffect } from 'react'
 import classNames from '../../utils/classNames'
-import { deepClone } from '../../utils/helpers'
 import RichText from '../RichText'
 
-const RichTextLayout = ({ index, blockItem }) => {
-  const { currentItem, blockList, setBlockList, setCurrentItem, isDragStart } = useContext(GlobalContext)
-
+const RichTextLayout = ({ index, value, onChange, styles, isEdit }) => {
   const richTextRef = useRef(null)
-
-  const isEdit = currentItem && currentItem.index === index
-  const styles = blockItem.styles
 
   useEffect(() => {
     if (isEdit) {
@@ -19,13 +12,7 @@ const RichTextLayout = ({ index, blockItem }) => {
   }, [])
 
   const setTextContent = (event) => {
-    const indexArray = index.split('-')
-    let newBlockList = deepClone(blockList)
-    let newCurrentItem = deepClone(currentItem)
-    newCurrentItem.data.text = event.target.innerHTML
-    newBlockList[indexArray[0]].children[indexArray[1]].children[indexArray[2]].text = event.target.innerHTML
-    setBlockList(newBlockList)
-    setCurrentItem({ ...newCurrentItem })
+    onChange(event.target.innerHTML)
   }
 
   const preventDefault = (event) => {
@@ -35,7 +22,7 @@ const RichTextLayout = ({ index, blockItem }) => {
 
   return (
     <div className="relative">
-      {isEdit && blockItem && !isDragStart && <RichText textBlock={richTextRef} index={index} styles={styles} />}
+      {isEdit && <RichText textBlock={richTextRef} index={index} styles={styles} onChange={onChange} />}
       <div
         className={classNames(isEdit && 'text-block', 'text-content_editable')}
         onClick={preventDefault}
@@ -44,7 +31,7 @@ const RichTextLayout = ({ index, blockItem }) => {
         contentEditable={isEdit}
         suppressContentEditableWarning
         ref={richTextRef}
-        dangerouslySetInnerHTML={{ __html: blockItem.text }}
+        dangerouslySetInnerHTML={{ __html: value }}
       ></div>
     </div>
   )

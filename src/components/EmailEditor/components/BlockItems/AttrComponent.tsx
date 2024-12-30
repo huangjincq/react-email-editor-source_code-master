@@ -27,6 +27,7 @@ const AttrComponent = () => {
   const handleStylesChange = (styles: any) => {
     const newCurrentItem = cloneDeep(currentItem)
     newCurrentItem.data.styles = styles
+
     _currentItemChange(newCurrentItem)
   }
 
@@ -37,7 +38,9 @@ const AttrComponent = () => {
       value={currentItem?.data?.propValue}
       styles={currentItem?.data?.styles}
     />
-  ) : null
+  ) : (
+    <>{currentItem?.data?.key}</>
+  )
 }
 
 export default AttrComponent

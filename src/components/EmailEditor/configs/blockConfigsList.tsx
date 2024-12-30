@@ -14,6 +14,8 @@ import { IInfoValue } from '../components/BlockItems/Info/type'
 import InfoComponent from '../components/BlockItems/Info/Component'
 import InfoAttr from '../components/BlockItems/Info/Attr'
 import ColumnAttr from '../components/BlockItems/Column/Attr'
+import TextComponent from '../components/BlockItems/Text/Component'
+import TextAttr from '../components/BlockItems/Text/Attr'
 
 const blockConfigsList: IBlockConfigItem[] = [
   {
@@ -60,6 +62,25 @@ const blockConfigsList: IBlockConfigItem[] = [
         ]
       }
     ]
+  },
+  {
+    name: 'Text',
+    key: BlockKeyEnum.Text,
+    icon: faFont,
+    propValue: 'This is a text, click to edit text',
+    component: TextComponent,
+    attrComponent: TextAttr,
+    styles: {
+      fontSize: 14,
+      fontFamily: 'sans-serif',
+      color: undefined,
+      lineHeight: '140%',
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: 'left'
+    }
   },
   {
     name: 'Info',

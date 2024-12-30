@@ -6,6 +6,7 @@ export enum BlockKeyEnum {
   Column = 'column',
   Content = 'content',
   Empty = 'empty',
+  Text = 'text',
   Info = 'info'
 }
 
@@ -34,6 +35,7 @@ export interface IBlockConfigsMap {
 
 export interface IBlockItemProps<T> {
   value?: T
+  index: string
   onChange: (value: T) => void
   styles: IBlockItemStyles
   onStylesChange: (styles: IBlockItemStyles) => void
