@@ -18,6 +18,8 @@ import TextComponent from '../components/BlockItems/Text/Component'
 import TextAttr from '../components/BlockItems/Text/Attr'
 import ImageComponent from '../components/BlockItems/Image/Component'
 import ImageAttr from '../components/BlockItems/Image/Attr'
+import DividerComponent from '../components/BlockItems/Divider/Component'
+import DividerAttr from '../components/BlockItems/Divider/Attr'
 
 const blockConfigsList: IBlockConfigItem[] = [
   {
@@ -98,6 +100,26 @@ const blockConfigsList: IBlockConfigItem[] = [
       paddingLeft: 12,
       paddingRight: 12,
       textAlign: 'center'
+    }
+  },
+  {
+    name: 'Divider',
+    icon: faGripLines,
+    key: BlockKeyEnum.Divider,
+    component: DividerComponent,
+    attrComponent: DividerAttr,
+    styles: {
+      paddingTop: 12,
+      paddingBottom: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
+      textAlign: 'center',
+      width: '100%',
+      borderTopStyle: 'solid',
+      borderTopColor: '#ccc',
+      borderTopWidth: 1,
+      display: 'inline-block',
+      verticalAlign: 'middle'
     }
   },
   {

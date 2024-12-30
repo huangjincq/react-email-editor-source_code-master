@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react'
 
 interface CardItemElementProps {
   title: string
-  children: ReactNode
+  children?: ReactNode
 }
 const CardItemElement = ({ title, children }: CardItemElementProps) => {
   return (
