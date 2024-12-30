@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash-es'
-import { blockConfigsMap } from '../../configs/blockConfigsList'
+import { blockConfigsMap } from '../../configs/blockConfigs'
 import { IBlockItem } from '../../types'
 import { useContext } from 'react'
 import { GlobalContext } from '../../reducers'

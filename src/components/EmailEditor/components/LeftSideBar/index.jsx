@@ -5,7 +5,7 @@ import classNames from '../../utils/classNames'
 import { faImages, faCubes } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
 import { deepClone } from '../../utils/helpers'
-import blockConfigsList from '../../configs/blockConfigsList'
+import blockConfigsList from '../../configs/blockConfigs'
 import BlockTree from './BlockTree'
 
 const LeftSideBar = (props) => {

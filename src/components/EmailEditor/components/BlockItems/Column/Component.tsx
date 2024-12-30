@@ -7,7 +7,7 @@ import { deepClone } from '../../../utils/helpers'
 import BlockComponent from '../BlockComponent'
 import { BlockKeyEnum, IBlockItem, IBlockItemProps } from '../../../types'
 import { IColumnValue } from './type'
-import { blockItemMap } from '../../../configs/blockConfigsList'
+import { blockItemMap } from '../../../configs/blockConfigs'
 
 interface ColumnComponentProps extends IBlockItemProps<IColumnValue> {
   clearStyles: () => void
@@ -28,7 +28,7 @@ const ColumnComponent = (props: ColumnComponentProps) => {
     setActionType
   } = useContext(GlobalContext)
 
-  let columnStyles = block.styles
+  const columnStyles = block.styles
   const { contentBackground, ...newStyles } = columnStyles
 
   const deleteBlock = (event: any) => {
@@ -221,7 +221,7 @@ const ColumnComponent = (props: ColumnComponentProps) => {
               data-index={blockIndex}
             >
               {block?.children?.map((content, index) => {
-                let contentStyles = content.styles
+                const contentStyles = content.styles
                 return (
                   <Fragment key={index}>
                     <div

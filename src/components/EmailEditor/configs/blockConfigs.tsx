@@ -1,13 +1,4 @@
-import {
-  faColumns,
-  faMinusSquare,
-  faHeading,
-  faFont,
-  faGripLines,
-  faImage,
-  faBorderNone,
-  faNewspaper
-} from '@fortawesome/free-solid-svg-icons'
+import { faColumns, faFont, faGripLines, faImage, faBorderNone, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 import { BlockKeyEnum, IBlockConfigItem, IBlockConfigsMap, IBlockItemMap } from '../types'
 import { IInfoValue } from '../components/BlockItems/Info/type'

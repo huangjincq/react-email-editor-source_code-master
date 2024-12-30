@@ -2,7 +2,7 @@ import { useState, useContext, useMemo, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
-import { blockConfigsMap } from '../../configs/blockConfigsList'
+import { blockConfigsMap } from '../../configs/blockConfigs'
 import { Tree } from 'antd'
 
 const BlockTree = (props) => {

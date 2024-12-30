@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { blockConfigsMap } from '../../configs/blockConfigsList'
+import { blockConfigsMap } from '../../configs/blockConfigs'
 import { GlobalContext } from '../../reducers'
 import { cloneDeep } from 'lodash-es'
 
