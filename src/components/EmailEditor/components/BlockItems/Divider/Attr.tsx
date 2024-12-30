@@ -3,8 +3,8 @@ import { Switch, Slider, Input, InputNumber, Select } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignCenter, faAlignLeft, faAlignRight, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
 import { IBlockItemProps } from '../../../types'
-import PaddingSettings from '../common/PaddingSettings'
-import CardItemElement from '../common/CardItemElement'
+import PaddingSettings from '../../PaddingSettings'
+import CardItemElement from '../../CardItemElement'
 import ColorPicker from '../../ColorPicker'
 
 const dividerType = [

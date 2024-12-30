@@ -4,8 +4,8 @@ import classNames from '../../../utils/classNames'
 import { Modal, Tabs } from 'antd'
 import columnsSetting from './columnsSetting'
 import ColorPicker from '../../ColorPicker'
-import PaddingSettings from '../common/PaddingSettings'
-import CardItemElement from '../common/CardItemElement'
+import PaddingSettings from '../../PaddingSettings'
+import CardItemElement from '../../CardItemElement'
 import { cloneDeep } from 'lodash-es'
 
 const columnList = [
@@ -80,7 +80,7 @@ const ColumnAttr = () => {
   }
 
   const handleOk = () => {
-    const newColumnConfig = columnsSetting[currentColumnType!]
+    const newColumnConfig = columnsSetting[currentColumnType as any]
 
     const newCurrentItem = cloneDeep(currentItem)
 

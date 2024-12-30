@@ -3,10 +3,10 @@ import { InputNumber, Select } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignCenter, faAlignLeft, faAlignRight, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
 import ColorPicker from '../../ColorPicker'
-import PaddingSettings from '../common/PaddingSettings'
+import PaddingSettings from '../../PaddingSettings'
 import { IBlockItemProps } from '../../../types'
 import { ITextValue } from './type'
-import CardItemElement from '../common/CardItemElement'
+import CardItemElement from '../../CardItemElement'
 
 const fontFamilyList = [
   'sans-serif',

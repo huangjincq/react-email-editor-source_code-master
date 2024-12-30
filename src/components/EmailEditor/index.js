@@ -1,4 +1,4 @@
-import { useReducer, forwardRef, useImperativeHandle } from 'react'
+import { useReducer } from 'react'
 import {
   GlobalContext,
   reducer,

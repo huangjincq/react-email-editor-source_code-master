@@ -1,9 +1,9 @@
 import { Key } from 'react'
 import { Select, Table } from 'antd'
-import PaddingSettings from '../common/PaddingSettings'
+import PaddingSettings from '../../PaddingSettings'
 import { IBlockItemProps } from '../../../types'
 import { IInfoValue } from './type'
-import CardItemElement from '../common/CardItemElement'
+import CardItemElement from '../../CardItemElement'
 const mockDataSourceOptions = [
   {
     label: 'User Info',

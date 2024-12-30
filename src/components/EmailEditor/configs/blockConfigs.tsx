@@ -147,8 +147,8 @@ const getBlockConfigsMap = (tree: IBlockConfigItem[], map = {} as any) => {
 }
 
 const getBlockItemMap = (tree: IBlockConfigItem[], map = {} as any) => {
-  tree.forEach(({ icon, ...node }) => {
-    // 将当前节点的id和name添加到map对象中
+  tree.forEach(({ icon, component, attrComponent, ...node }) => {
+    // 剔除部分 icon, component, attrComponent 等不需要的属性
     map[node.key] = node
     // 如果当前节点有子节点，则递归调用此函数
     if (node.children && node.children.length > 0) {

@@ -3,45 +3,17 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ColorPicker from '../ColorPicker'
 import { GlobalContext } from '../../reducers'
 import { InputNumber, Input } from 'antd'
-// import StyleSettings from '../StyleSettings'
 import useLayout from '../../utils/useStyleLayout'
 import useTranslation from '../../translation'
 import AttrComponent from '../BlockItems/AttrComponent'
+import { blockConfigsMap } from '../../configs/blockConfigs'
+import CardItemElement from '../CardItemElement/index'
 
 const RightSetting = () => {
   const { currentItem, isDragStart, bodySettings, setBodySettings } = useContext(GlobalContext)
   const { t } = useTranslation()
-  const { cardItemElement } = useLayout()
-  const blockTitle = () => {
-    let title = 'Block'
-    const type = currentItem?.data.key
-    switch (type) {
-      case 'text':
-        title = t('text_settings')
-        break
-      case 'column':
-        title = t('column_settings')
-        break
-      case 'heading':
-        title = t('heading_settings')
-        break
-      case 'button':
-        title = t('button_settings')
-        break
-      case 'divider':
-        title = t('divider_settings')
-        break
-      case 'image':
-        title = t('image_settings')
-        break
-      case 'info':
-        title = 'Info'
-        break
-      default:
-        break
-    }
-    return title
-  }
+
+  const blockTitle = blockConfigsMap[currentItem?.data.key]?.name
 
   const colorChange = (key: string) => (color: any) => {
     setBodySettings({ ...bodySettings, styles: { ...bodySettings.styles, [key]: color.hex } }, 'set_body_settings')
@@ -50,18 +22,15 @@ const RightSetting = () => {
   const themeElement = () => {
     return (
       <>
-        <div className="subject-settings">{t('body_settings')}</div>
+        <div className="subject-settings">Theme Settings</div>
         <div className="margin-top-32">
-          {cardItemElement(
-            t('text_color'),
+          <CardItemElement title="Text Color">
             <ColorPicker color={bodySettings.styles.color} setColor={colorChange('color')} />
-          )}
-          {cardItemElement(
-            t('email_theme_background_color'),
+          </CardItemElement>
+          <CardItemElement title="Theme Background Color">
             <ColorPicker color={bodySettings.styles.backgroundColor} setColor={colorChange('backgroundColor')} />
-          )}
-          {cardItemElement(
-            t('line_height'),
+          </CardItemElement>
+          <CardItemElement title="Line Height">
             <InputNumber
               className="input-width"
               addonAfter="px"
@@ -69,8 +38,8 @@ const RightSetting = () => {
               max={900}
               value={Number(bodySettings.contentWidth)}
               onChange={(value) => setBodySettings({ ...bodySettings, contentWidth: value }, 'set_body_settings')}
-            />
-          )}
+            />{' '}
+          </CardItemElement>
           <div>
             <div className="pre_header">{t('pre_header')}</div>
             <Input
@@ -102,7 +71,7 @@ const RightSetting = () => {
             transition={{ duration: 0.3 }}
             key={0}
           >
-            <h2 className="right-setting-block-title">{blockTitle()}</h2>
+            <h2 className="right-setting-block-title">{blockTitle}</h2>
             <div className="margin-top-18">
               <AttrComponent />
             </div>
