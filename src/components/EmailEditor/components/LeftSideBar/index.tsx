@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from '../../utils/classNames'
 import { faImages, faCubes } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
-import { deepClone } from '../../utils/helpers'
 import blockConfigsList from '../../configs/blockConfigs'
 import BlockTree from './BlockTree'
+import { deepClone } from '../../utils/helpers'
+import { getColumnConfig } from '../../configs/getColumnConfig'
 
-const LeftSideBar = (props) => {
+const LeftSideBar = (props: any) => {
   const { clearStyles } = props
   const { setCurrentItem, setIsDragStart, blockList, setActionType } = useContext(GlobalContext)
   const [currentSideBarKey, setCurrentSideBarKey] = useState('blocks')
@@ -26,7 +27,7 @@ const LeftSideBar = (props) => {
     }
   ]
 
-  const dragEnd = (event) => {
+  const dragEnd = (event: any) => {
     event.target.style.border = ''
     event.target.children[0] && event.target.children[0].classList.remove('sidebar-block-move')
     setTimeout(() => {
@@ -35,8 +36,8 @@ const LeftSideBar = (props) => {
     }, 50)
   }
 
-  const dragStart = (item) => (event) => {
-    setCurrentItem({ data: deepClone(item), type: 'add', index: blockList.length + 1 })
+  const dragStart = (item: any) => (event: any) => {
+    setCurrentItem({ data: getColumnConfig(item.key), type: 'add', index: blockList.length + 1 })
     setIsDragStart(true)
     event.target.style.border = '1px dashed #ccc'
     event.target.children[0] && event.target.children[0].classList.add('sidebar-block-move')
@@ -54,23 +55,25 @@ const LeftSideBar = (props) => {
         key="blocks"
       >
         <div className="side-bar-blocks-container">
-          {blockConfigsList.map(({ icon, ...item }) => {
-            return (
-              <div
-                className="side-bar-blocks-item"
-                data-block_type="header"
-                draggable="true"
-                key={item.key}
-                onDragEnd={dragEnd}
-                onDragStart={dragStart(item)}
-              >
-                <div className="sidebar-block">
-                  <FontAwesomeIcon icon={icon} className="sidebar-block-icon" />
-                  <div className="sidebar-block-text">{item.name}</div>
+          {blockConfigsList
+            .filter((item) => !item.hiddenInList)
+            .map(({ icon, ...item }) => {
+              return (
+                <div
+                  className="side-bar-blocks-item"
+                  data-block_type="header"
+                  draggable="true"
+                  key={item.key}
+                  onDragEnd={dragEnd}
+                  onDragStart={dragStart(item)}
+                >
+                  <div className="sidebar-block">
+                    <FontAwesomeIcon icon={icon} className="sidebar-block-icon" />
+                    <div className="sidebar-block-text">{item.name}</div>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
         </div>
       </motion.div>
     )

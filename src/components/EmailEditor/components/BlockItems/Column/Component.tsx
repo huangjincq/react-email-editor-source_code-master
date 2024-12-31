@@ -7,7 +7,7 @@ import { deepClone } from '../../../utils/helpers'
 import BlockComponent from '../BlockComponent'
 import { BlockKeyEnum, IBlockItem, IBlockItemProps } from '../../../types'
 import { IColumnValue } from './type'
-import { blockItemMap } from '../../../configs/blockConfigs'
+import { getColumnConfig } from '../../../configs/getColumnConfig'
 
 interface ColumnComponentProps extends IBlockItemProps<IColumnValue> {
   clearStyles: () => void
@@ -51,7 +51,7 @@ const ColumnComponent = (props: ColumnComponentProps) => {
     const item = newBlockList[blockIndex].children[contentIndex].children
     item.splice(itemIndex, 1)
     if (item.length === 0) {
-      item.push(blockItemMap[BlockKeyEnum.Column]!.children![0]!.children![0])
+      item.push(getColumnConfig(BlockKeyEnum.Empty))
     }
     setBlockList(newBlockList, 'delete')
     setCurrentItem(null)

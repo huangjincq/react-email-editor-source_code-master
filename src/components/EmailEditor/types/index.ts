@@ -17,6 +17,7 @@ export interface IBlockItem {
   key: BlockKeyEnum
   styles: IBlockItemStyles
   propValue?: any // 组件的值
+  hiddenInList?: boolean
   children?: IBlockItem[]
 }
 

@@ -22,7 +22,6 @@ const DividerAttr = ({ value, styles, onStylesChange }: DividerAttrProps) => {
       ...newStyles
     })
   }
-  console.log(22, width, Number(width.replace('%', '')))
 
   return (
     <div className="margin-y-30">

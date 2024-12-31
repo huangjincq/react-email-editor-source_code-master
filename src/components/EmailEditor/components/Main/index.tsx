@@ -1,50 +1,38 @@
 import { useContext, useCallback, useEffect } from 'react'
 import { GlobalContext } from '../../reducers'
-import { throttle, deepClone } from '../../utils/helpers'
-
+import { throttle } from '../../utils/helpers'
 import LeftSideBar from '../LeftSideBar'
 import Preview from '../Preview'
 import Header from '../Header'
 import RightSetting from '../RightSetting'
-import useTranslation from '../../translation'
-import getColumnConfig from '../../configs/getColumnConfig'
+import { getEmptyColumnConfig, getColumnConfig } from '../../configs/getColumnConfig'
+import { BlockKeyEnum } from '../../types'
+import { cloneDeep } from 'lodash-es'
 
-const Main = ({}) => {
+const emptyConfig = getColumnConfig(BlockKeyEnum.Empty)
+
+const Main = () => {
   const { blockList, setBlockList, currentItem, setCurrentItem, setIsDragStart } = useContext(GlobalContext)
-  const { t } = useTranslation()
-
-  const defaultContentConfig = {
-    name: t('drag_block_here'),
-    key: 'empty',
-    width: '100%',
-    styles: {
-      backgroundColor: 'transparent',
-      paddingTop: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      paddingBottom: 0
-    }
-  }
 
   const clearLabelStyles = () => {
     const dragLabelElements = document.getElementsByClassName('block-drag-label-content')
-    Array.from(dragLabelElements).forEach((item) => {
+    Array.from(dragLabelElements).forEach((item: any) => {
       item.children[0].style.visibility = 'hidden'
     })
   }
 
   const clearContentLabelStyles = () => {
     const dragContentLabelElements = document.getElementsByClassName('block-content-drag-label-content')
-    Array.from(dragContentLabelElements).forEach((item) => {
+    Array.from(dragContentLabelElements).forEach((item: any) => {
       item.children[0].style.visibility = 'hidden'
     })
   }
 
   const onDragOver = useCallback(
-    throttle((event) => {
+    throttle((event: any) => {
       event.preventDefault()
       event.stopPropagation()
-      let { index } = event.target.dataset
+      const { index } = event.target.dataset
       switch (event.target.dataset.type) {
         case 'empty-block':
           clearLabelStyles()
@@ -55,7 +43,7 @@ const Main = ({}) => {
         case 'drag-over-column':
           clearContentLabelStyles()
           const dragLabelElements = document.getElementsByClassName('block-drag-label-content')
-          Array.from(dragLabelElements).forEach((item) => {
+          Array.from(dragLabelElements).forEach((item: any) => {
             if (Number(item.dataset.index) === Number(index)) {
               item.children[0].style.visibility = 'visible'
             } else {
@@ -67,7 +55,7 @@ const Main = ({}) => {
         case 'block-item-move':
           clearLabelStyles()
           const dragBlockItemElements = document.getElementsByClassName('block-content-drag-label-content')
-          Array.from(dragBlockItemElements).forEach((item) => {
+          Array.from(dragBlockItemElements).forEach((item: any) => {
             if (item.dataset.index === index) {
               item.children[0].style.visibility = 'visible'
             } else {
@@ -92,7 +80,7 @@ const Main = ({}) => {
     }, 30),
     []
   )
-  const onDrop = (event) => {
+  const onDrop = (event: any) => {
     event.preventDefault()
     event.stopPropagation()
     const { type } = event.target.dataset
@@ -101,11 +89,11 @@ const Main = ({}) => {
       // 第一次添加元素
       case 'empty-block':
         if (currentItem.data.key !== 'column') {
-          const newCurrentItem = getColumnConfig(currentItem.data)
+          const newCurrentItem = getEmptyColumnConfig(currentItem.data)
           setCurrentItem({ data: currentItem.data, type: 'edit', index: '0-0-0' })
           setBlockList([newCurrentItem], 'add')
         } else {
-          const newCurrentItem = getColumnConfig()
+          const newCurrentItem = getEmptyColumnConfig()
           setCurrentItem({ data: newCurrentItem, type: 'edit', index: 0 })
           setBlockList([newCurrentItem], 'add')
         }
@@ -113,7 +101,7 @@ const Main = ({}) => {
       case 'empty-block-item':
         clearEmptyContentStyles()
         const { index } = event.target.dataset
-        const newBlockList = deepClone(blockList)
+        const newBlockList = cloneDeep(blockList)
         const indexArr = index.split('-')
         const blockIndex = indexArr[0]
         const itemIndex = indexArr[1]
@@ -126,10 +114,10 @@ const Main = ({}) => {
           const oldItemIndex = oldIndexArr[1]
           const oldItem = newBlockList[oldBlockIndex].children[oldItemIndex]
           if (oldItem.children.length === 1) {
-            newBlockList[oldBlockIndex].children[oldItemIndex].children = [defaultContentConfig]
+            newBlockList[oldBlockIndex].children[oldItemIndex].children = [emptyConfig]
           } else {
             newBlockList[oldBlockIndex].children[oldItemIndex].children = oldItem.children.filter(
-              (item, index) => index !== Number(oldIndexArr[2])
+              (item: any, index: number) => index !== Number(oldIndexArr[2])
             )
           }
         }
@@ -139,8 +127,8 @@ const Main = ({}) => {
       case 'drag-over-column':
         {
           const { position, index } = event.target.dataset
-          const newBlockList = deepClone(blockList)
-          let newCurrentItem = deepClone(currentItem)
+          const newBlockList = cloneDeep(blockList)
+          let newCurrentItem = cloneDeep(currentItem)
           if (currentItem.type === 'add') {
             newBlockList.splice(index, 0, currentItem.data)
             newCurrentItem = { ...currentItem, type: 'edit', index }
@@ -155,7 +143,7 @@ const Main = ({}) => {
 
         setTimeout(() => {
           const dragLabelElements = document.getElementsByClassName('block-drag-label-content')
-          Array.from(dragLabelElements).forEach((item) => {
+          Array.from(dragLabelElements).forEach((item: any) => {
             item.children[0].style.visibility = 'hidden'
           })
         }, 30)
@@ -164,13 +152,13 @@ const Main = ({}) => {
       case 'block-item-move':
         {
           const { position, index } = event.target.dataset
-          const newBlockList = deepClone(blockList)
+          const newBlockList = cloneDeep(blockList)
           const indexArr = index.split('-')
           const blockIndex = indexArr[0]
           const contentIndex = indexArr[1]
           const itemIndex = indexArr[2]
           const blockItem = newBlockList[blockIndex].children[contentIndex].children
-          let newCurrentItem = deepClone(currentItem)
+          let newCurrentItem = cloneDeep(currentItem)
           if (currentItem.type === 'add') {
             blockItem.splice(itemIndex, 0, currentItem.data)
             newCurrentItem = { ...currentItem, type: 'edit', index }
@@ -209,7 +197,7 @@ const Main = ({}) => {
               blockItem.splice(position === 'top' ? Number(itemIndex) : itemIndex, 0, moveItem)
 
               if (oldItem.length === 0) {
-                newBlockList[oldBlockIndex].children[oldContentIndex].children = [defaultContentConfig]
+                newBlockList[oldBlockIndex].children[oldContentIndex].children = [emptyConfig]
               }
               newCurrentItem = {
                 ...currentItem,
@@ -223,7 +211,7 @@ const Main = ({}) => {
         }
         setTimeout(() => {
           const dragBlockItemElements = document.getElementsByClassName('block-content-drag-label-content')
-          Array.from(dragBlockItemElements).forEach((item) => {
+          Array.from(dragBlockItemElements).forEach((item: any) => {
             item.children[0].style.visibility = 'hidden'
           })
         }, 30)
@@ -234,7 +222,7 @@ const Main = ({}) => {
   }
 
   const clearEmptyContentStyles = () => {
-    document.querySelectorAll('.block-empty-content').forEach((item) => {
+    document.querySelectorAll('.block-empty-content').forEach((item: any) => {
       item.style.outlineStyle = ''
     })
   }
@@ -245,7 +233,7 @@ const Main = ({}) => {
     clearEmptyContentStyles()
   }
 
-  const onDragLeave = (event) =>
+  const onDragLeave = (event: any) =>
     setTimeout(() => {
       switch (event.target.dataset.type) {
         case 'empty-block':
