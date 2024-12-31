@@ -92,19 +92,23 @@ const Main = ({}) => {
     }, 30),
     []
   )
-
   const onDrop = (event) => {
     event.preventDefault()
     event.stopPropagation()
     const { type } = event.target.dataset
     setIsDragStart(false)
-
     switch (type) {
       // 第一次添加元素
       case 'empty-block':
-        const newCurrentItem = currentItem.data.key !== 'column' ? getColumnConfig(currentItem.data) : getColumnConfig()
-        setBlockList([newCurrentItem], 'add')
-        setCurrentItem({ data: newCurrentItem, type: 'edit', index: 0 })
+        if (currentItem.data.key !== 'column') {
+          const newCurrentItem = getColumnConfig(currentItem.data)
+          setCurrentItem({ data: currentItem.data, type: 'edit', index: '0-0-0' })
+          setBlockList([newCurrentItem], 'add')
+        } else {
+          const newCurrentItem = getColumnConfig()
+          setCurrentItem({ data: newCurrentItem, type: 'edit', index: 0 })
+          setBlockList([newCurrentItem], 'add')
+        }
         break
       case 'empty-block-item':
         clearEmptyContentStyles()

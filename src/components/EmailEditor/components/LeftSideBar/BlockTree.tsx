@@ -4,17 +4,18 @@ import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { GlobalContext } from '../../reducers'
 import { blockConfigsMap } from '../../configs/blockConfigs'
 import { Tree } from 'antd'
+import { Key } from 'rc-tree/lib/interface'
 
-const BlockTree = (props) => {
+const BlockTree = () => {
   const { setCurrentItem, currentItem, blockList } = useContext(GlobalContext)
 
   const [autoExpandParent, setAutoExpandParent] = useState(false)
-  const [expandedKeys, setExpandedKeys] = useState([])
+  const [expandedKeys, setExpandedKeys] = useState<Key[]>([])
 
   const treeData = useMemo(() => formatTreeData(blockList), [blockList])
   const selectedKeys = currentItem ? [String(currentItem.index)] : []
 
-  const onSelect = (selectedKeys, info) => {
+  const onSelect = (selectedKeys: Key[], info: any) => {
     // 如果点击的是content节点，则选中父级Column节点
     if (['content', 'empty', 'column'].includes(info.node._key)) {
       const index = Number(info.node.key[0])
@@ -27,7 +28,7 @@ const BlockTree = (props) => {
     }
   }
 
-  const handleExpand = (expandedKeys) => {
+  const handleExpand = (expandedKeys: Key[]) => {
     setAutoExpandParent(false)
     setExpandedKeys(expandedKeys)
   }
@@ -64,8 +65,8 @@ const BlockTree = (props) => {
 
 export default BlockTree
 
-const formatTreeData = (treeData, parentId = '') => {
-  return treeData.map((node, index) => {
+const formatTreeData = (treeData: any, parentId = '') => {
+  return treeData.map((node: any, index: string) => {
     // 生成新的id，如果是根节点，则不加‘-’前缀
     const id = parentId ? `${parentId}-${index}` : `${index}`
 
