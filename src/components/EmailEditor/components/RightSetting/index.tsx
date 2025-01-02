@@ -3,14 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ColorPicker from '../ColorPicker'
 import { GlobalContext } from '../../reducers'
 import { InputNumber, Input } from 'antd'
-import useTranslation from '../../translation'
 import AttrComponent from '../BlockItems/AttrComponent'
 import { blockConfigsMap } from '../../configs/blockConfigs'
 import CardItemElement from '../CardItemElement/index'
 
 const RightSetting = () => {
   const { currentItem, isDragStart, bodySettings, setBodySettings } = useContext(GlobalContext)
-  const { t } = useTranslation()
 
   const blockTitle = blockConfigsMap[currentItem?.data.key]?.name
 
@@ -40,7 +38,7 @@ const RightSetting = () => {
             />{' '}
           </CardItemElement>
           <div>
-            <div className="pre_header">{t('pre_header')}</div>
+            <div className="pre_header">Pre-header</div>
             <Input
               className="margin-top-12"
               value={bodySettings.preHeader}
@@ -48,7 +46,9 @@ const RightSetting = () => {
                 setBodySettings({ ...bodySettings, preHeader: event.target.value }, 'set_body_settings')
               }
             />
-            <div className="pre_header-desc">{t('pre_header_description')}</div>
+            <div className="pre_header-desc">
+              The pre-header is a short summary text that follows the subject line when viewing an email in the inbox.
+            </div>
           </div>
         </div>
       </>
